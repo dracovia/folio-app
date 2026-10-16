@@ -9,9 +9,15 @@
     for(let i=0;i<bytes.length;i+=8192) raw += String.fromCharCode(...bytes.subarray(i,i+8192));
     return btoa(raw);
   };
+  // GitHub's Contents API inserts line breaks into base64, sometimes after
+  // the final '=' padding. Strip whitespace *before* validating the payload.
   const dec = value => {
-    if(typeof value !== 'string' || !/^[A-Za-z0-9+\/\s]*={0,2}$/.test(value)) throw Error('Invalid base64 data.');
-    const raw=atob(value.replace(/\s/g,''));
+    if(typeof value !== 'string') throw Error('Invalid base64 data.');
+    const clean=value.replace(/\s/g,'');
+    if(!clean || !/^[A-Za-z0-9+/]*={0,2}$/.test(clean) || clean.length%4===1)
+      throw Error('Invalid base64 data.');
+    let raw;
+    try {raw=atob(clean)} catch {throw Error('Invalid base64 data.')}
     return Uint8Array.from(raw,c=>c.charCodeAt(0));
   };
   const validContext = () => {

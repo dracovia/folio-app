@@ -1,4 +1,4 @@
-const CACHE = 'folio-offline-v8';
+const CACHE = 'folio-offline-v9';
 const FILES = ['./', './index.html', './styles.css', './theme.css', './js/app.js', './js/github-sync.js', './assets/icon.svg', './assets/icon-192.png', './assets/icon-512.png', './manifest.webmanifest'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)).then(() => self.skipWaiting()));
