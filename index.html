@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#304D3B">
+  <meta name="description" content="Folio — free, private, offline personal finance tracker.">
+  <link rel="icon" type="image/svg+xml" href="./assets/icon.svg">
+  <link rel="apple-touch-icon" href="./assets/icon-192.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./theme.css">
+  <title>Folio — Your Money</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Sidebar">
+      <a class="brand" href="#dashboard" aria-label="Folio home">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17V7m5 10v-6m5 6V5m5 12V9"/></svg></span>
+        <span class="brand-name">folio<span class="brand-dot">.</span></span>
+      </a>
+      <div class="nav-caption">WORKSPACE</div>
+      <nav class="side-nav" id="sideNav"></nav>
+      <div class="sidebar-bottom">
+        <div class="privacy-note"><div class="privacy-icon" id="privacyIcon"></div><div><strong>Private by design</strong><p>Your data stays on this device. Optional encrypted GitHub backup.</p></div></div>
+        <div class="sync-sidebar" id="syncSidebarStatus" aria-live="polite">GitHub sync not connected</div>
+        <span class="version-badge">FOLIO 1.6.1 · FREE FOREVER</span>
+      </div>
+    </aside>
+    <div class="main-area">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Personal finance</span><span class="breadcrumb-divider">/</span><strong id="crumbCurrent">Dashboard</strong></div>
+        <div class="topbar-actions"><span class="offline-badge"><span class="online-dot"></span> Local & private</span><button id="topAdd" class="button button-primary button-small" type="button"><span id="addIcon"></span> Add transaction</button></div>
+      </header>
+      <main id="mainContent" tabindex="-1"></main>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation"></nav>
+  <dialog id="appDialog" aria-label="Edit details" class="app-dialog"></dialog>
+  <div id="toastRegion" class="toast-region" role="status" aria-live="polite"></div>
+  <input type="file" id="importInput" accept="application/json,.json" hidden>
+  <input type="file" id="cashewCsvInput" accept="text/csv,.csv" hidden>
+  <script src="./js/github-sync.js" defer></script>
+  <script src="./js/app.js" defer></script>
+</body>
+</html>
